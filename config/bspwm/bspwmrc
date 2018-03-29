@@ -1,0 +1,20 @@
+#! /bin/sh
+
+# solve tearing on 1080
+nvidia-settings --assign CurrentMetaMode="DP-2: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}, HDMI-0: nvidia-auto-select +2560+0 {ForceCompositionPipeline=On}" &
+
+compton -b --backend glx --vsync opengl-mswc -C&
+sh ~/.fehbg &
+sxhkd &
+
+bspc monitor DP-2 -d 1 2 3 4 5
+bspc monitor HDMI-0 -d 6 7 8 9 0 
+
+bspc config border_width         0
+bspc config window_gap          12
+
+bspc config split_ratio          	0.5
+bspc config borderless_monocle   	true
+bspc config gapless_monocle      	true
+bspc config focus_follows_pointer	true
+
